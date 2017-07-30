@@ -19,7 +19,8 @@
   "jest": {
     "moduleNameMapper": {
       "test/expect": "<rootDir>/test/expect.js"
-    }
+    },
+    "coveragePathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/test/"]
   },
   "dependencies": {
     "ramda": "^0.24.1"

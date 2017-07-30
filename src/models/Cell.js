@@ -100,7 +100,7 @@ class Cell extends Record({
     );
   }
 
-  getNeighbour(direction = NORTH) {
+  getNeighbour(direction) {
     switch (direction) {
       case NORTH:
         return this.getNorthCell();

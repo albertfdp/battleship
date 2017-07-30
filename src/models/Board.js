@@ -12,7 +12,7 @@ class Board extends Record({
   cells: new Map(),
   boats: new List()
 }) {
-  static create(size = 1) {
+  static create(size = 10) {
     return new Board({
       boardSize: size,
       cells: new Map(

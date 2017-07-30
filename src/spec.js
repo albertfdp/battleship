@@ -21,6 +21,20 @@ describe('createBoard', () => {
     expect(board.print(), 'to match snapshot');
   });
 
+  it('prints the board with boats', () => {
+    const printedXs = board.print(true).split('').reduce((acc, curr) => {
+      return curr === 'X' ? acc + 1 : acc;
+    }, 0);
+
+    expect(
+      printedXs,
+      'to equal',
+      board.boats.reduce((acc, curr) => {
+        return acc + curr.cells.size;
+      }, 0)
+    );
+  });
+
   describe('when playing', () => {
     describe('when hitting water', () => {
       it('marks the hit cell', () => {

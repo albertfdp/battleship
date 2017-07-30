@@ -16,7 +16,7 @@ describe('Board', () => {
 
   describe('when initializing', () => {
     beforeEach(() => {
-      board = Board.create(10);
+      board = Board.create();
     });
 
     it('creates a board from an array of cells', () => {
