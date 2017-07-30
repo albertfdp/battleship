@@ -1,21 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Board as BoardModel } from 'records';
+import R from 'ramda';
+import { List } from 'immutable';
 
 import Cell from '../Cell';
 
 import styles from './styles.css';
 
-const Board = ({ board, size }) => {
-  const rows = board.cellsToList();
+const Board = ({ cells, size }) => {
+  if (cells.isEmpty()) {
+    return null;
+  }
 
   return (
     <div className={styles.board}>
-      {rows.map((row, id) =>
-        <div key={id} className={styles.row}>
-          {row.map(cell =>
-            <Cell key={cell.id} type={cell.type} hit={cell.hit} size={size} />
-          )}
+      {R.times(R.identity, size).map(row =>
+        <div className={styles.row} key={row}>
+          {/* {cells
+            .filter(cell => cell.row === row)
+            .map(
+              cell =>
+                console.log(cell) ||
+                <Cell key={cell.id} type={cell.type} hit={cell.hit} />
+            )} */}
         </div>
       )}
     </div>
@@ -23,12 +30,8 @@ const Board = ({ board, size }) => {
 };
 
 Board.propTypes = {
-  board: PropTypes.instanceOf(BoardModel),
-  size: PropTypes.oneOf(['large', 'small'])
-};
-
-Board.defaultProps = {
-  size: 'large'
+  cells: PropTypes.instanceOf(List),
+  size: PropTypes.number
 };
 
 export default Board;
