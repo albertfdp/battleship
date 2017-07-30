@@ -13,10 +13,11 @@ Hit.propTypes = {
   type: PropTypes.oneOf(['WATER', 'BOAT'])
 };
 
-const Cell = ({ type, hit }) =>
+const Cell = ({ type, hit, size }) =>
   <div
     className={classnames(styles.cell, {
-      [styles[type]]: type
+      [styles[type]]: type,
+      [styles[size]]: size
     })}
   >
     {hit
@@ -29,12 +30,14 @@ const Cell = ({ type, hit }) =>
 
 Cell.propTypes = {
   type: PropTypes.oneOf(['WATER', 'BOAT']),
-  hit: PropTypes.bool
+  hit: PropTypes.bool,
+  size: PropTypes.oneOf(['large', 'small'])
 };
 
 Cell.defaultProps = {
   type: 'WATER',
-  hit: false
+  hit: false,
+  size: 'large'
 };
 
 export default Cell;

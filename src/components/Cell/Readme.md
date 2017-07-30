@@ -4,6 +4,12 @@
 <Cell />
 ```
 
+Small
+
+```
+<Cell size='small' />
+```
+
 Hit:
 
 ```

@@ -1,5 +1,5 @@
 import expect from 'test/expect';
-import { createBoard } from '.';
+import createBoard from './createBoard';
 
 describe('createBoard', () => {
   let board;

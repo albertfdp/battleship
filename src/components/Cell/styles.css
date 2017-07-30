@@ -2,7 +2,9 @@
 
 :root {
   --cell-size: 60px;
+  --cell-size-small: 40px;
   --cell-wave-width: 20px;
+  --cell-wave-width-small: 15px;
 }
 
 .cell {
@@ -13,6 +15,12 @@
   height: var(--cell-size);
   width: var(--cell-size);
   background-color: var(--color-blue);
+  margin: 1px;
+}
+
+.cell.small {
+  height: var(--cell-size-small);
+  width: var(--cell-size-small);
 }
 
 .cell:hover,
@@ -30,6 +38,10 @@
   width: calc(var(--cell-wave-width) * 1.5);
 }
 
+.cell.small .content {
+  width: calc(var(--cell-wave-width-small) * 1.5);
+}
+
 .hit {
   display: flex;
   flex: 1;
@@ -38,16 +50,16 @@
   align-items: center;
 }
 
-.hit-content {
-  background-color: red;
-}
-
 .wave {
   display: flex;
   height: 3px;
   width: var(--cell-wave-width);
   background-color: color(var(--color-blue) shade(20%));
   margin-bottom: 3px;
+}
+
+.cell.small .wave {
+  width: var(--cell-wave-width-small);
 }
 
 .wave:last-of-type {
