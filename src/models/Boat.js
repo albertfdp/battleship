@@ -1,5 +1,4 @@
 const { Record, Map } = require('immutable');
-const { BOAT } = require('../constants');
 
 class Boat extends Record({
   cells: new Map()

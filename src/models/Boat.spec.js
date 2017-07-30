@@ -1,7 +1,6 @@
 const expect = require('test/expect');
 const Boat = require('./Boat');
 const Cell = require('./Cell');
-const { Record } = require('immutable');
 const { BOAT } = require('../constants');
 
 describe('Boat', () => {
@@ -50,6 +49,8 @@ describe('Boat', () => {
     });
 
     describe('when initialized', () => {
+      let cells;
+
       beforeEach(() => {
         cells = [0, 1, 2, 3].map(
           row =>

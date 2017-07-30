@@ -1,3 +1,11 @@
+# packages
 node_modules/
+
+# built files
+dist/
+
+# coverage
 coverage
+
+# other
 .DS_Store

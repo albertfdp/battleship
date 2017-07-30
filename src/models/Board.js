@@ -1,7 +1,7 @@
 const R = require('ramda');
 const { Record, Map, List } = require('immutable');
 const Boat = require('./Boat');
-const { WATER, BOAT } = require('../constants');
+const { BOAT } = require('../constants');
 const directions = require('../constants/directions');
 const { random } = require('../utils');
 

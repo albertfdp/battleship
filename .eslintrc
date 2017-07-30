@@ -1,0 +1,13 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "pretty-standard"
+  ],
+  "globals": {
+    "__DEV__": false,
+    "__PRODUCTION__": false,
+    "describe": false,
+    "it": false,
+    "beforeEach": false
+  }
+}

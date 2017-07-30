@@ -4,7 +4,7 @@ const R = require('ramda');
 const Cell = require('./Cell');
 const { WATER } = require('../constants');
 const { NORTH, EAST, SOUTH, WEST } = require('../constants/directions');
-const { Record, List } = require('immutable');
+const { List } = require('immutable');
 
 describe('Cell', () => {
   let cell;
@@ -30,7 +30,7 @@ describe('Cell', () => {
       expect(cell.id, 'to equal', 'A1');
     });
 
-    const cells = R.times(R.identity, 10).map(column => {
+    R.times(R.identity, 10).map(column => {
       const cell = new Cell({ row: 0, column });
 
       it(`computes the coords for column ${cell.id}`, () => {

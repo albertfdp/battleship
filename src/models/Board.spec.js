@@ -1,7 +1,7 @@
 const expect = require('test/expect');
 const Board = require('./Board');
 const Cell = require('./Cell');
-const { Record, List } = require('immutable');
+const { List } = require('immutable');
 const { BOAT } = require('../constants');
 const { EAST } = require('../constants/directions');
 
@@ -93,8 +93,6 @@ describe('Board', () => {
   });
 
   describe('addBoard', () => {
-    let cells;
-
     beforeEach(() => {
       board = Board.create(10).addBoat(4);
     });
