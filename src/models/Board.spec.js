@@ -46,11 +46,15 @@ describe('Board', () => {
 
     it('returns a list of WATER cells of the given size', () => {
       expect(cells, 'to have size', 4);
-      expect(cells.every(c => c.isWater()), 'to be true');
+      expect(cells.toArray(), 'to have items satisfying', cell => {
+        expect(cell, 'to be water');
+      });
     });
 
     it('all cells are water type', () => {
-      expect(cells.every(c => c.isWater()), 'to be true');
+      expect(cells.toArray(), 'to have items satisfying', cell => {
+        expect(cell, 'to be water');
+      });
     });
 
     it('no cell has a neighbour boat', () => {
@@ -103,7 +107,9 @@ describe('Board', () => {
       it('all cells in boat are of type boat', () => {
         const cells = board.boats.first().cells;
 
-        expect(cells.every(cell => cell.isBoat()), 'to be true');
+        expect(cells.toArray(), 'to have items satisfying', cell => {
+          expect(cell, 'to be a boat');
+        });
       });
 
       it('the cells of the boat are marked as type boat in the board', () => {
@@ -111,7 +117,9 @@ describe('Board', () => {
         const cells = board.cells.filter(cell => boatCells.has(cell.id));
 
         expect(cells, 'to have size', 4);
-        expect(cells.every(cell => cell.isBoat()), 'to be true');
+        expect(cells.toArray(), 'to have items satisfying', cell => {
+          expect(cell, 'to be a boat');
+        });
       });
     });
 

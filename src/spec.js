@@ -25,14 +25,9 @@ describe('createBoard', () => {
     describe('when hitting water', () => {
       it('marks the hit cell', () => {
         const waterCell = board.cells.find(cell => cell.isWater());
+        const playedBoard = board.play(waterCell.id);
 
-        expect(
-          board.play(waterCell.id),
-          'to equal',
-          board.merge({
-            cells: board.cells.set(waterCell.id, waterCell.set('hit', true))
-          })
-        );
+        expect(playedBoard, 'to have cell', waterCell.id, 'to be hit');
       });
     });
 
@@ -64,28 +59,24 @@ describe('createBoard', () => {
       });
 
       it('marks the hit cell', () => {
-        expect(
-          playedBoard.cells.get(boatCell.id),
-          'to equal',
-          boatCell.set('hit', true)
-        );
+        expect(playedBoard, 'to have cell', boatCell.id, 'satisfying', {
+          hit: true
+        });
       });
 
       it('marks the boat hit cell', () => {
         expect(
-          playedBoard.boats
-            .find(b => b.cells.has(boatCell.id))
-            .cells.get(boatCell.id),
-          'to equal',
-          boatCell.set('hit', true)
+          playedBoard.boats.find(b => b.cells.has(boatCell.id)),
+          'to have cell',
+          boatCell.id,
+          'to be hit'
         );
       });
 
       it('the boat is not sunk yet', () => {
         expect(
-          playedBoard.boats.find(b => b.cells.has(boatCell.id)).isSunk(),
-          'to equal',
-          false
+          playedBoard.boats.find(b => b.cells.has(boatCell.id)),
+          'not to be sunk'
         );
       });
 
@@ -98,19 +89,17 @@ describe('createBoard', () => {
 
         it('marks the boat hit cell', () => {
           expect(
-            playedBoard.boats
-              .find(b => b.cells.has(boatCell.id))
-              .cells.get(boatCell.id),
-            'to equal',
-            boatCell.set('hit', true)
+            playedBoard.boats.find(b => b.cells.has(boatCell.id)),
+            'to have cell',
+            boatCell.id,
+            'to be hit'
           );
         });
 
         it('the boat is not sunk yet', () => {
           expect(
-            playedBoard.boats.find(b => b.cells.has(boatCell.id)).isSunk(),
-            'to equal',
-            true
+            playedBoard.boats.find(b => b.cells.has(boatCell.id)),
+            'to be sunk'
           );
         });
       });
