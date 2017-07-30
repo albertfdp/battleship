@@ -10,6 +10,18 @@ expect
     base: 'object',
     identify: value => Record.isRecord(value)
   })
+  .addType({
+    name: 'Board',
+    base: 'ImmutableRecord',
+    identify: value =>
+      value &&
+      typeof value.boardSize !== 'undefined' &&
+      typeof value.cells !== 'undefined' &&
+      typeof value.boats !== 'undefined'
+  })
+  .addAssertion(['<Board> [not] to have game over'], (expect, subject) =>
+    expect(subject.isGameOver(), '[not] to be true')
+  )
   .addAssertion(
     ['<ImmutableRecord> to have properties <array>'],
     (expect, subject, value) => expect(subject._keys, 'to equal', value)

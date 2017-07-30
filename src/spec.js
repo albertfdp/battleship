@@ -10,11 +10,11 @@ describe('createBoard', () => {
   });
 
   it('creates a board with 100 cells', () => {
-    expect(board.cells.size, 'to equal', 100);
+    expect(board.cells, 'to have size', 100);
   });
 
   it('creates a board with 7 boats', () => {
-    expect(board.boats.size, 'to equal', 7);
+    expect(board.boats, 'to have size', 7);
   });
 
   it('prints the board with no boats', () => {
@@ -48,7 +48,7 @@ describe('createBoard', () => {
       });
 
       it('isGameOver', () => {
-        expect(playedBoard.isGameOver(), 'to be true');
+        expect(playedBoard, 'to have game over');
       });
     });
 

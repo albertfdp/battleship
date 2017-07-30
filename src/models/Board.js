@@ -60,11 +60,13 @@ class Board extends Record({
     }
   }
 
-  addBoat(size) {
+  addBoat(size, retries = 0) {
     const cells = this.getRandomAvailableBoatCells(size);
 
-    if (!cells) {
+    if (!cells && retries >= 2) {
       throw new Error(`Could not add a boat of size ${size}`);
+    } else if (!cells) {
+      return this.addBoat(size, retries + 1);
     }
 
     const boatCells = cells.map(cell => cell.set('type', BOAT));
