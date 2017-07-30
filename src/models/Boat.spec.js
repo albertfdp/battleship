@@ -1,7 +1,7 @@
-const expect = require('test/expect');
-const Boat = require('./Boat');
-const Cell = require('./Cell');
-const { BOAT } = require('../constants');
+import expect from 'test/expect';
+import Boat from './Boat';
+import Cell from './Cell';
+import { BOAT } from '../constants';
 
 describe('Boat', () => {
   let boat;

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const paths = require('./paths');
 
 module.exports = {
-  // devtool: 'cheap-module-source-map',
+  devtool: 'cheap-module-source-map',
 
   entry: [paths.app],
 

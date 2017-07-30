@@ -1,8 +1,8 @@
-const { Record, List } = require('immutable');
-const { WATER, BOAT, BOARD_SIZE } = require('../constants');
-const { NORTH, EAST, SOUTH, WEST } = require('../constants/directions');
+import { Record, List } from 'immutable';
+import { WATER, BOAT, BOARD_SIZE } from '../constants';
+import { NORTH, EAST, SOUTH, WEST } from '../constants/directions';
 
-class Cell extends Record({
+export default class Cell extends Record({
   row: undefined,
   column: undefined,
   type: WATER,
@@ -115,5 +115,3 @@ class Cell extends Record({
     }
   }
 }
-
-module.exports = Cell;

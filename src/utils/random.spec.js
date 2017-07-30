@@ -1,5 +1,5 @@
-const expect = require('test/expect');
-const random = require('./random');
+import expect from 'test/expect';
+import random from './random';
 
 describe('random', () => {
   it('returns a number between 0 and 10', () => {

@@ -1,8 +1,8 @@
-const unexpected = require('unexpected');
-const unexpectedImmutable = require('unexpected-immutable');
-const expect = unexpected.clone().use(unexpectedImmutable);
+import unexpected from 'unexpected';
+import unexpectedImmutable from 'unexpected-immutable';
+import { Record } from 'immutable';
 
-const { Record } = require('immutable');
+const expect = unexpected.clone().use(unexpectedImmutable);
 
 expect
   .addType({
@@ -76,4 +76,4 @@ expect
     global.expect(subject).toMatchSnapshot();
   });
 
-module.exports = expect;
+export default expect;

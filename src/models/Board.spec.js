@@ -1,9 +1,9 @@
-const expect = require('test/expect');
-const Board = require('./Board');
-const Cell = require('./Cell');
-const { List } = require('immutable');
-const { BOAT } = require('../constants');
-const { EAST } = require('../constants/directions');
+import expect from 'test/expect';
+import Board from './Board';
+import Cell from './Cell';
+import { List } from 'immutable';
+import { BOAT } from '../constants';
+import { EAST } from '../constants/directions';
 
 describe('Board', () => {
   let board;

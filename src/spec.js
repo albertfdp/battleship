@@ -1,6 +1,5 @@
-const expect = require('test/expect');
-const { List } = require('immutable');
-const { createBoard } = require('.');
+import expect from 'test/expect';
+import { createBoard } from '.';
 
 describe('createBoard', () => {
   let board;

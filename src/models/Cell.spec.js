@@ -1,10 +1,10 @@
-const expect = require('test/expect');
-const R = require('ramda');
+import expect from 'test/expect';
+import R from 'ramda';
 
-const Cell = require('./Cell');
-const { WATER } = require('../constants');
-const { NORTH, EAST, SOUTH, WEST } = require('../constants/directions');
-const { List } = require('immutable');
+import Cell from './Cell';
+import { WATER } from '../constants';
+import { NORTH, EAST, SOUTH, WEST } from '../constants/directions';
+import { List } from 'immutable';
 
 describe('Cell', () => {
   let cell;

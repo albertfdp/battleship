@@ -1,6 +1,4 @@
-module.exports = {
-  NORTH: 'NORTH',
-  EAST: 'EAST',
-  SOUTH: 'SOUTH',
-  WEST: 'WEST'
-};
+export const NORTH = 'NORTH';
+export const EAST = 'EAST';
+export const SOUTH = 'SOUTH';
+export const WEST = 'WEST';

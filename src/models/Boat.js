@@ -1,6 +1,6 @@
-const { Record, Map } = require('immutable');
+import { Record, Map } from 'immutable';
 
-class Boat extends Record({
+export default class Boat extends Record({
   cells: new Map()
 }) {
   get size() {
@@ -19,5 +19,3 @@ class Boat extends Record({
     });
   }
 }
-
-module.exports = Boat;

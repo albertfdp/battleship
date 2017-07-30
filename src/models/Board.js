@@ -1,11 +1,10 @@
-const R = require('ramda');
-const { Record, Map, List } = require('immutable');
-const Boat = require('./Boat');
-const { BOAT } = require('../constants');
-const directions = require('../constants/directions');
-const { random } = require('../utils');
-
-const Cell = require('./Cell');
+import R from 'ramda';
+import { Record, Map, List } from 'immutable';
+import Boat from './Boat';
+import { BOAT } from '../constants';
+import * as directions from '../constants/directions';
+import { random } from '../utils';
+import Cell from './Cell';
 
 class Board extends Record({
   boardSize: undefined,
@@ -183,5 +182,4 @@ class Board extends Record({
     return output;
   }
 }
-
-module.exports = Board;
+export default Board;

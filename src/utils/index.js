@@ -1,3 +1,1 @@
-module.exports = {
-  random: require('./random')
-};
+export random from './random';
