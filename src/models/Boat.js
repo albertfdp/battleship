@@ -10,8 +10,7 @@ class Boat extends Record({
 
   isSunk() {
     return (
-      this.cells.size > 0 &&
-      this.cells.every(cell => cell.type === BOAT && cell.hit)
+      this.cells.size > 0 && this.cells.every(cell => cell.isBoat() && cell.hit)
     );
   }
 

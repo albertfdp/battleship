@@ -92,6 +92,10 @@ describe('Cell', () => {
         expect(cell.getNeighbour(WEST), 'to equal', null);
       });
 
+      it(`returns the neighbour on unknown direction`, () => {
+        expect(cell.getNeighbour(null), 'to equal', null);
+      });
+
       it('returns all neighbours', () => {
         expect(
           cell.getNeighbours(),

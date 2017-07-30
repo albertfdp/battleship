@@ -66,7 +66,7 @@ describe('Boat', () => {
 
       it('is not sunk when some cells are of type BOAT and were hit', () => {
         boat = boat.updateIn(['cells'], cells =>
-          cells.set('0-0', cell => cell.set('hit', false))
+          cells.update('A1', cell => cell.set('hit', false))
         );
 
         expect(boat.isSunk(), 'to be false');

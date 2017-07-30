@@ -8,12 +8,6 @@ expect
   .addType({
     name: 'ImmutableRecord',
     base: 'object',
-    inspect: function(record, depth, output, inspect) {
-      output
-        .text(`new ${Record.getDescriptiveName(record)}(`)
-        .append(inspect(record.toJS(), depth))
-        .text(')');
-    },
     identify: value => Record.isRecord(value)
   })
   .addAssertion(

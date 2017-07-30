@@ -27,12 +27,37 @@ class Board extends Record({
     });
   }
 
+  isGameOver() {
+    return this.boats.every(boat => boat.isSunk());
+  }
+
   cellsToList() {
     return R.times(R.identity, this.boardSize).map(row =>
       R.times(R.identity, this.boardSize).map(column =>
         this.cells.get(Cell.id({ column, row }))
       )
     );
+  }
+
+  play(id) {
+    const playedCell = this.cells.get(id).set('hit', true);
+
+    if (playedCell.isWater()) {
+      return this.merge({
+        cells: this.cells.set(playedCell.id, playedCell)
+      });
+    } else {
+      return this.merge({
+        boats: this.boats.update(
+          this.boats.findIndex(boat => boat.cells.has(playedCell.id)),
+          boat =>
+            boat.updateIn(['cells'], cells =>
+              cells.set(playedCell.id, playedCell)
+            )
+        ),
+        cells: this.cells.set(playedCell.id, playedCell)
+      });
+    }
   }
 
   addBoat(size) {
@@ -80,7 +105,7 @@ class Board extends Record({
     return available.get(random(0, available.size));
   }
 
-  findRecursiveNeighbours(cell, direction, neighbours = new List(), size) {
+  findRecursiveNeighbours(cell, direction, neighbours, size) {
     if (
       neighbours.isEmpty() &&
       cell.isWater() &&
