@@ -1,4 +1,4 @@
-import Board from '../models/Board';
+import { Board } from 'records';
 import { BOAT_SIZES, BOARD_SIZE } from '../constants';
 
 const createBoard = (boats = BOAT_SIZES) => {

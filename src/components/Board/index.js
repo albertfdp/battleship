@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Board as BoardModel } from 'models';
+import { Board as BoardModel } from 'records';
 
 import Cell from '../Cell';
 
