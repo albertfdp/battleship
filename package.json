@@ -1,0 +1,27 @@
+{
+  "name": "battleship",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "flow": "^0.2.3",
+    "immutable": "^4.0.0-rc.2",
+    "jest": "^20.0.4",
+    "prettier": "^1.5.3",
+    "unexpected": "^10.32.1",
+    "unexpected-immutable": "github:albertfdp/unexpected-immutable"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "test/expect": "<rootDir>/test/expect.js"
+    }
+  },
+  "dependencies": {
+    "ramda": "^0.24.1"
+  }
+}

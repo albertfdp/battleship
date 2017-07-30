@@ -1,0 +1,160 @@
+const R = require('ramda');
+const { Record, Map, List } = require('immutable');
+const Boat = require('./Boat');
+const { WATER, BOAT } = require('../constants');
+const directions = require('../constants/directions');
+const { random } = require('../utils');
+
+const Cell = require('./Cell');
+
+class Board extends Record({
+  boardSize: undefined,
+  cells: new Map(),
+  boats: new List()
+}) {
+  static create(size = 1) {
+    return new Board({
+      boardSize: size,
+      cells: new Map(
+        R.flatten(
+          R.times(R.identity, size).map(row =>
+            R.times(R.identity, size).map(
+              column => new Cell({ row, column, boardSize: size })
+            )
+          )
+        ).map(cell => [cell.id, cell])
+      )
+    });
+  }
+
+  cellsToList() {
+    return R.times(R.identity, this.boardSize).map(row =>
+      R.times(R.identity, this.boardSize).map(column =>
+        this.cells.get(Cell.id({ column, row }))
+      )
+    );
+  }
+
+  addBoat(size) {
+    const cells = this.getRandomAvailableBoatCells(size);
+
+    if (!cells) {
+      throw new Error(`Could not add a boat of size ${size}`);
+    }
+
+    const boatCells = cells.map(cell => cell.set('type', BOAT));
+    const boat = Boat.create(boatCells);
+
+    return this.merge({
+      boats: this.boats.push(boat),
+      cells: this.cells.merge(boatCells.map(cell => [cell.id, cell]))
+    });
+  }
+
+  getRandomAvailableBoatCells(size) {
+    if (size <= 0) {
+      return null;
+    }
+
+    let available = new List();
+
+    this.cells.forEach(cell => {
+      Object.keys(directions).forEach(direction => {
+        const cells = this.findRecursiveNeighbours(
+          cell,
+          directions[direction],
+          new List(),
+          size
+        );
+
+        if (cells.size >= size) {
+          available = available.push(cells);
+        }
+      });
+    });
+
+    if (available.size === 0) {
+      return null;
+    }
+
+    return available.get(random(0, available.size));
+  }
+
+  findRecursiveNeighbours(cell, direction, neighbours = new List(), size) {
+    if (
+      neighbours.isEmpty() &&
+      cell.isWater() &&
+      cell.getNeighbours().every(n => this.cells.get(n.id).isWater())
+    ) {
+      return this.findRecursiveNeighbours(
+        cell,
+        direction,
+        neighbours.push(cell),
+        size
+      );
+    } else if (neighbours.isEmpty()) {
+      return new List();
+    }
+
+    const next = cell.getNeighbour(direction);
+
+    if (
+      next &&
+      next.isWater() &&
+      next.getNeighbours().every(n => this.cells.get(n.id).isWater()) &&
+      size > neighbours.size
+    ) {
+      return this.findRecursiveNeighbours(
+        next,
+        direction,
+        neighbours.push(next),
+        size
+      );
+    }
+
+    return neighbours;
+  }
+
+  print(showBoats = false) {
+    let output = '\n';
+
+    this.cellsToList().map((row, id) => {
+      row.map((column, columnIdx) => {
+        const number = String(Number(column.id.slice(1, column.id.length)));
+
+        if (id === 0 && columnIdx === 0) {
+          output += `----${number}`;
+        } else if (id === 0) {
+          output += `----${number}`;
+        } else {
+          output += `-----`;
+        }
+      });
+
+      output += id === 0 ? '-\n' : '--\n';
+
+      row.map((column, columnIdx) => {
+        const letter = columnIdx === 0 ? column.id[0] : '';
+        const inner = column.isWater() || !showBoats ? ' ' : 'X';
+
+        output += `${letter} | ${inner} `;
+      });
+
+      output += '|\n';
+
+      if (id === this.boardSize - 1) {
+        row.map((_, id) => {
+          if (id === 0) {
+            output += `-------`;
+          } else {
+            output += `-----`;
+          }
+        });
+      }
+    });
+
+    return output;
+  }
+}
+
+module.exports = Board;
