@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import R from 'ramda';
 import { List } from 'immutable';
 
 import Cell from '../Cell';
@@ -14,15 +13,9 @@ const Board = ({ cells, size }) => {
 
   return (
     <div className={styles.board}>
-      {R.times(R.identity, size).map(row =>
-        <div className={styles.row} key={row}>
-          {/* {cells
-            .filter(cell => cell.row === row)
-            .map(
-              cell =>
-                console.log(cell) ||
-                <Cell key={cell.id} type={cell.type} hit={cell.hit} />
-            )} */}
+      {cells.map((row, rowIdx) =>
+        <div className={styles.row} key={rowIdx}>
+          {row.map((cell, cellId) => <Cell {...cell} key={cellId} />)}
         </div>
       )}
     </div>

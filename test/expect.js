@@ -6,6 +6,14 @@ const expect = unexpected.clone().use(unexpectedImmutable);
 
 expect
   .addType({
+    name: 'ReduxStore',
+    identify: store =>
+      store &&
+      typeof store.getState === 'function' &&
+      typeof store.dispatch === 'function' &&
+      typeof store.subscribe === 'function'
+  })
+  .addType({
     name: 'ImmutableRecord',
     base: 'object',
     identify: value => Record.isRecord(value)
@@ -40,6 +48,18 @@ expect
       typeof value.column !== 'undefined' &&
       typeof value.type !== 'undefined'
   })
+  .addAssertion(
+    ['<ReduxStore> to have state satisfying <any>'],
+    (expect, subject, value) => {
+      expect(subject.getState(), 'to satisfy', value);
+    }
+  )
+  .addAssertion(
+    ['<ReduxStore> when receiving action <function> <assertion>'],
+    (expect, subject, value) => {
+      expect(subject.dispatch(value()), 'to satisfy', value);
+    }
+  )
   .addAssertion(['<Board> [not] to have game over'], (expect, subject) =>
     expect(subject.isGameOver(), '[not] to be true')
   )
