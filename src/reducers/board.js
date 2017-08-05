@@ -1,11 +1,9 @@
-const board = (state = {}, action) => {
+const board = (state = null, action) => {
   switch (action.type) {
     case 'BOARD_INIT': {
       const { board } = action.data;
 
-      return {
-        size: board.boardSize
-      };
+      return board;
     }
     default:
       return state;

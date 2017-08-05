@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
+import { cellRowsSelector } from 'selectors/CellSelectors';
+
+import { connect } from 'react-redux';
 
 import Cell from '../Cell';
 
 import styles from './styles.css';
 
-const Board = ({ cells, size }) => {
+const Board = ({ cells }) => {
   if (cells.isEmpty()) {
     return null;
   }
@@ -23,8 +26,9 @@ const Board = ({ cells, size }) => {
 };
 
 Board.propTypes = {
-  cells: PropTypes.instanceOf(List),
-  size: PropTypes.number
+  cells: PropTypes.instanceOf(List)
 };
 
-export default Board;
+const mapStateToProps = state => ({ cells: cellRowsSelector(state) });
+
+export default connect(mapStateToProps)(Board);
