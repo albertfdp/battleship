@@ -1,0 +1,54 @@
+:root {
+  --boat-radius: 3px;
+  --boat-border-color: rgb(12, 38, 55);
+}
+
+.boat {
+  display: flex;
+  flex-direction: row;
+  margin: 3px 0;
+}
+
+.block.hit {
+  border-color: rgb(72, 78, 103);
+  background-color: color(rgb(72, 78, 103) tint(40%));
+}
+
+.block {
+  height: 20px;
+  width: 40px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(12, 38, 55);
+  background-color: color(var(--boat-border-color) tint(80%));
+}
+
+[dir="ltr"] .block {
+  border-left-style: none;
+}
+
+[dir="rtl"] .block {
+  border-right-style: none;
+}
+
+[dir="ltr"] .block:first-child {
+  border-left-style: solid;
+  border-top-left-radius: var(--boat-radius);
+  border-bottom-left-radius: var(--boat-radius);
+}
+
+[dir="rtl"] .block:first-child {
+  border-right-style: solid;
+  border-top-right-radius: var(--boat-radius);
+  border-bottom-right-radius: var(--boat-radius);
+}
+
+[dir="ltr"] .block:last-child {
+  border-top-right-radius: var(--boat-radius);
+  border-bottom-right-radius: var(--boat-radius);
+}
+
+[dir="rtl"] .block:last-child {
+  border-top-left-radius: var(--boat-radius);
+  border-bottom-left-radius: var(--boat-radius);
+}

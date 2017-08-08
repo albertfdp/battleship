@@ -8,14 +8,20 @@ body > div {
 
 .app {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
+  align-items: flex-start;
   flex: 1;
   height: 100%;
+  padding-top: 30px;
 }
 
-.content {
-  width: 80vh;
-  height: 80vh;
-  border: 1px solid red;
+@media screen and (max-width: 900px) {
+  .app {
+    flex-direction: column;
+    padding-top: 0;
+  }
+
+  .current {
+    margin-bottom: 10px;
+  }
 }
