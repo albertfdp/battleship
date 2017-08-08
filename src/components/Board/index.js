@@ -14,17 +14,13 @@ import styles from './styles.css';
 class Board extends Component {
   static propTypes = {
     cells: PropTypes.instanceOf(List),
-    boardActions: PropTypes.object
+    boardActions: PropTypes.object,
+    player: PropTypes.number,
+    size: PropTypes.string
   };
 
-  componentWillMount() {
-    const { boardActions } = this.props;
-
-    boardActions.init();
-  }
-
   render() {
-    const { cells, boardActions } = this.props;
+    const { cells, boardActions, player, size } = this.props;
 
     if (cells.isEmpty()) {
       return null;
@@ -39,7 +35,8 @@ class Board extends Component {
                 type={cell.type}
                 hit={cell.hit}
                 key={cellId}
-                onHit={() => boardActions.onHit(cell)}
+                onHit={() => boardActions.onHit(player, cell)}
+                size={size}
               />
             )}
           </div>
@@ -48,7 +45,9 @@ class Board extends Component {
     );
   }
 }
-const mapStateToProps = state => ({ cells: cellRowsSelector(state) });
+const mapStateToProps = (state, { player }) => ({
+  cells: cellRowsSelector(state, player)
+});
 
 const mapDispatchToProps = dispatch => ({
   boardActions: bindActionCreators(BoardActions, dispatch)

@@ -2,10 +2,12 @@ import { createBoard } from 'utils';
 
 export const init = () => ({
   type: 'BOARD_INIT',
-  data: { board: createBoard() }
+  data: {
+    boards: [createBoard(), createBoard()]
+  }
 });
 
-export const onHit = cell => ({
+export const onHit = (id, cell) => ({
   type: 'BOARD_PLAY',
-  data: { cell: cell.id }
+  data: { id, cell: cell.id }
 });

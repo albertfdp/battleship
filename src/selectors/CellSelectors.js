@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { List } from 'immutable';
 
-const cellsSelector = state => state.board.get('cells');
+const cellsSelector = (state, player) => state.boards.get(player).get('cells');
 
 export const cellRowsSelector = createSelector(
   cellsSelector,

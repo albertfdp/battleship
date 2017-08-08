@@ -14,11 +14,11 @@ describe('CellSelectors', () => {
   });
 
   it('groups the cells into rows', () => {
-    expect(cellRowsSelector(store.getState()), 'to have size', 10);
+    expect(cellRowsSelector(store.getState(), 0), 'to have size', 10);
   });
 
   it('each row has 10 cells', () => {
-    const cells = cellRowsSelector(store.getState());
+    const cells = cellRowsSelector(store.getState(), 0);
 
     cells.map(row => expect(row, 'to have size', 10));
   });
