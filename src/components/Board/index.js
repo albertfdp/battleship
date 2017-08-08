@@ -1,34 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { List } from 'immutable';
 import { cellRowsSelector } from 'selectors/CellSelectors';
 
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import * as BoardActions from 'actions/BoardActions';
 
 import Cell from '../Cell';
 
 import styles from './styles.css';
 
-const Board = ({ cells }) => {
-  if (cells.isEmpty()) {
-    return null;
+class Board extends Component {
+  static propTypes = {
+    cells: PropTypes.instanceOf(List),
+    boardActions: PropTypes.object
+  };
+
+  componentWillMount() {
+    const { boardActions } = this.props;
+
+    boardActions.init();
   }
 
-  return (
-    <div className={styles.board}>
-      {cells.map((row, rowIdx) =>
-        <div className={styles.row} key={rowIdx}>
-          {row.map((cell, cellId) => <Cell {...cell} key={cellId} />)}
-        </div>
-      )}
-    </div>
-  );
-};
+  render() {
+    const { cells, boardActions } = this.props;
 
-Board.propTypes = {
-  cells: PropTypes.instanceOf(List)
-};
+    if (cells.isEmpty()) {
+      return null;
+    }
 
+    return (
+      <div className={styles.board}>
+        {cells.map((row, rowIdx) =>
+          <div className={styles.row} key={rowIdx}>
+            {row.map((cell, cellId) =>
+              <Cell
+                type={cell.type}
+                hit={cell.hit}
+                key={cellId}
+                onHit={() => boardActions.onHit(cell)}
+              />
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+}
 const mapStateToProps = state => ({ cells: cellRowsSelector(state) });
 
-export default connect(mapStateToProps)(Board);
+const mapDispatchToProps = dispatch => ({
+  boardActions: bindActionCreators(BoardActions, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Board);

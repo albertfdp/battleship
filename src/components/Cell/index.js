@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import styles from './styles.css';
 
 const Hit = ({ type }) =>
-  <div className={classnames(styles.hit, { [styles.type]: type })}>
+  <div className={classnames(styles.hitContent, { [styles.type]: type })}>
     {type === 'WATER' ? '🌊' : '💥'}
   </div>;
 
@@ -13,12 +13,14 @@ Hit.propTypes = {
   type: PropTypes.oneOf(['WATER', 'BOAT'])
 };
 
-const Cell = ({ type, hit, size }) =>
+const Cell = ({ type, hit, size, onHit }) =>
   <div
     className={classnames(styles.cell, {
-      [styles[type]]: type,
+      [styles.hit]: hit,
+      [styles[type.toLowerCase()]]: type,
       [styles[size]]: size
     })}
+    onClick={onHit}
   >
     {hit
       ? <Hit type={type} />
@@ -29,6 +31,7 @@ const Cell = ({ type, hit, size }) =>
   </div>;
 
 Cell.propTypes = {
+  onHit: PropTypes.func,
   type: PropTypes.oneOf(['WATER', 'BOAT']),
   hit: PropTypes.bool,
   size: PropTypes.oneOf(['large', 'small'])

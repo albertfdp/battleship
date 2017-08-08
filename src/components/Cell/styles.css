@@ -44,7 +44,15 @@
   width: calc(var(--cell-wave-width-small) * 1.5);
 }
 
+.water.hit {
+  background-color: color(var(--color-blue) shade(5%));
+}
+
 .hit {
+  background-color: color(var(--color-blue) shade(30%));
+}
+
+.hit-content {
   display: flex;
   flex: 1;
   height: 100%;
