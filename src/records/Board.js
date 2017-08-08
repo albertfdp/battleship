@@ -30,6 +30,10 @@ class Board extends Record({
     return this.boats.every(boat => boat.isSunk());
   }
 
+  get score() {
+    return this.boats.reduce((acc, curr) => acc + curr.getState(), 0);
+  }
+
   cellsToList() {
     return R.times(R.identity, this.boardSize).map(row =>
       R.times(R.identity, this.boardSize).map(column =>

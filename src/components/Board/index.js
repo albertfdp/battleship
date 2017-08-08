@@ -13,6 +13,7 @@ import styles from './styles.css';
 
 class Board extends Component {
   static propTypes = {
+    disabled: PropTypes.bool,
     cells: PropTypes.instanceOf(List),
     boardActions: PropTypes.object,
     player: PropTypes.number,
@@ -20,14 +21,19 @@ class Board extends Component {
   };
 
   render() {
-    const { cells, boardActions, player, size } = this.props;
+    const { cells, disabled, boardActions, player, size } = this.props;
 
     if (cells.isEmpty()) {
       return null;
     }
 
     return (
-      <div className={styles.board}>
+      <div className={styles.board} disabled={disabled}>
+        {disabled
+          ? <div className={styles.number}>
+              {player}
+            </div>
+          : null}
         {cells.map((row, rowIdx) =>
           <div className={styles.row} key={rowIdx}>
             {row.map((cell, cellId) =>
@@ -35,7 +41,8 @@ class Board extends Component {
                 type={cell.type}
                 hit={cell.hit}
                 key={cellId}
-                onHit={() => boardActions.onHit(player, cell)}
+                disabled={disabled}
+                onHit={() => !disabled && boardActions.onHit(player, cell)}
                 size={size}
               />
             )}
@@ -46,6 +53,7 @@ class Board extends Component {
   }
 }
 const mapStateToProps = (state, { player }) => ({
+  disabled: player !== state.turn,
   cells: cellRowsSelector(state, player)
 });
 

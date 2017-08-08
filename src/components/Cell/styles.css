@@ -25,6 +25,12 @@
   width: var(--cell-size-small);
 }
 
+.cell.disabled:hover,
+.cell.disabled:focus,
+.cell.disabled:active {
+  cursor: not-allowed;
+}
+
 .cell:hover,
 .cell:focus,
 .cell:active {

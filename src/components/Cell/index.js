@@ -13,9 +13,10 @@ Hit.propTypes = {
   type: PropTypes.oneOf(['WATER', 'BOAT'])
 };
 
-const Cell = ({ type, hit, size, onHit }) =>
+const Cell = ({ disabled, type, hit, size, onHit }) =>
   <div
     className={classnames(styles.cell, {
+      [styles.disabled]: disabled,
       [styles.hit]: hit,
       [styles[type.toLowerCase()]]: type,
       [styles[size]]: size
@@ -31,6 +32,7 @@ const Cell = ({ type, hit, size, onHit }) =>
   </div>;
 
 Cell.propTypes = {
+  disabled: PropTypes.bool,
   onHit: PropTypes.func,
   type: PropTypes.oneOf(['WATER', 'BOAT']),
   hit: PropTypes.bool,
