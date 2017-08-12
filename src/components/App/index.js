@@ -24,6 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className={styles.app}>
+        <h1 className={styles.title}>Battleship</h1>
         <div className={classnames(styles.board, styles.current)}>
           <Board player={0} />
         </div>

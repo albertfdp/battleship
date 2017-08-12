@@ -6,30 +6,41 @@ body > div {
   margin: 0;
 }
 
+html,
+body {
+  font-family: 'Fira Mono', monospace;
+}
+
 .app {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
-  align-items: flex-start;
-  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
 }
 
 .board {
-  padding-top: 30px;
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (min-width: 992px) {
   .app {
-    flex-direction: column;
-    align-items: center;
-    padding-top: 0;
+    flex-direction: row;
+    justify-content: space-around;
   }
 
+  .board {
+    padding-top: 30px;
+  }
+}
+
+@media screen and (max-width: 992px) {
   .current {
     margin-bottom: 10px;
   }

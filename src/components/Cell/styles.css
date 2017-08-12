@@ -1,8 +1,8 @@
 @import "styles/variables.css";
 
 :root {
-  --cell-size: 60px;
-  --cell-size-small: 40px;
+  --cell-size: 3.75em;
+  --cell-size-small: 2.5em;
   --cell-wave-width: 20px;
   --cell-wave-width-small: 15px;
 }

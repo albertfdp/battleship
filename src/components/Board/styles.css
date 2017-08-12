@@ -17,7 +17,6 @@
   left: 0;
   right: 0;
   font-size: 48px;
-  font-family: sans-serif;
 }
 
 .board[disabled] {
@@ -36,11 +35,9 @@
 }
 
 .header {
-  font-family: 'Operator Mono', 'Helvetica', sans-serif;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  a: 1;
+  justify-content: space-between;
   height: 20px;
 }
 
@@ -58,19 +55,19 @@
   width: auto;
   align-items: center;
   padding-right: 10px;
-  height: 62px;
+  height: 3.85em;
 }
 
 .header.vertical.small .column {
-  height: 42px;
+  height: 2.64em;
 }
 
 .column {
   display: flex;
   justify-content: center;
-  width: 62px;
+  width: 3.75em;
 }
 
 .small .column {
-  width: 42px;
+  width: 2.5em;
 }
