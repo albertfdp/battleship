@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import * as BoardActions from 'actions/BoardActions';
 
 import Cell from '../Cell';
+import { Header, PlayerNumber, Row } from './Core';
 
 import styles from './styles.css';
 
@@ -117,33 +118,33 @@ class Board extends Component {
         disabled={disabled}
         onKeyDown={this.onKeyDown}
       >
-        {disabled
-          ? <div className={styles.number}>
-              {player}
-            </div>
-          : null}
-        <div
-          className={styles.cells}
-          ref={node => {
-            if (node) {
-              this.node = node;
-            }
-          }}
-        >
-          {cells.map((row, rowIdx) =>
-            <div className={styles.row} key={rowIdx}>
-              {row.map((cell, cellId) =>
-                <Cell
-                  type={cell.type}
-                  hit={cell.hit}
-                  key={cellId}
-                  disabled={disabled}
-                  onHit={() => !disabled && boardActions.onHit(player, cell)}
-                  size={size}
-                />
-              )}
-            </div>
-          )}
+        <Header vertical size={cells.size} type={size} />
+        <div className={styles.container}>
+          <PlayerNumber hidden={!disabled} number={player} />
+          <Header size={cells.size} type={size} />
+          <div
+            className={styles.cells}
+            ref={node => {
+              if (node) {
+                this.node = node;
+              }
+            }}
+          >
+            {cells.map((row, rowIdx) =>
+              <Row key={rowIdx}>
+                {row.map((cell, cellId) =>
+                  <Cell
+                    type={cell.type}
+                    hit={cell.hit}
+                    key={cellId}
+                    disabled={disabled}
+                    onHit={() => !disabled && boardActions.onHit(player, cell)}
+                    size={size}
+                  />
+                )}
+              </Row>
+            )}
+          </div>
         </div>
       </div>
     );

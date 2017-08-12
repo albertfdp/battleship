@@ -1,4 +1,6 @@
 .board {
+  display: flex;
+  flex-direction: row;
   position: relative;
   transition: opacity .5s ease-in-out;
   margin: 10px;
@@ -23,7 +25,52 @@
   cursor: not-allowed;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
 .row {
   display: flex;
   flex-direction: row;
+}
+
+.header {
+  font-family: 'Operator Mono', 'Helvetica', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  a: 1;
+  height: 20px;
+}
+
+.header.vertical {
+  flex-direction: column;
+  margin-top: 20px;
+  height: 100%;
+}
+
+.header.vertical .column:first-child {
+  height: 61px;
+}
+
+.header.vertical .column {
+  width: auto;
+  align-items: center;
+  padding-right: 10px;
+  height: 62px;
+}
+
+.header.vertical.small .column {
+  height: 42px;
+}
+
+.column {
+  display: flex;
+  justify-content: center;
+  width: 62px;
+}
+
+.small .column {
+  width: 42px;
 }
