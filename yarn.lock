@@ -2680,6 +2680,18 @@ focus-group@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/focus-group/-/focus-group-0.3.1.tgz#e0f32ed86b0dabdd6ffcebdf898ecb32e47fedce"
 
+focus-trap-react@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-3.0.3.tgz#96f934fba39dae9b80a5d2b4839a919c0bc4fa7e"
+  dependencies:
+    focus-trap "^2.0.1"
+
+focus-trap@^2.0.1:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-2.3.0.tgz#07c91964867d346315f4f5f8df88bf96455316e2"
+  dependencies:
+    tabbable "^1.0.3"
+
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -4398,6 +4410,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+no-scroll@^2.0.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/no-scroll/-/no-scroll-2.1.0.tgz#f8643b3ddb6a3bf94430e5ff31d26f21d082a695"
+
 node-dir@^0.1.10:
   version "0.1.17"
   resolved "https://registry.yarnpkg.com/node-dir/-/node-dir-0.1.17.tgz#5f5665d93351335caabef8f1c554516cf5f1e4e5"
@@ -5599,6 +5615,14 @@ react-addons-test-utils@16.0.0-alpha.3:
     fbjs "^0.8.9"
     object-assign "^4.1.0"
 
+react-aria-modal@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-aria-modal/-/react-aria-modal-2.7.0.tgz#aec0dc223bf46b5ad1b00ef0f4e601c673181140"
+  dependencies:
+    focus-trap-react "^3.0.3"
+    no-scroll "^2.0.0"
+    react-displace "^2.1.4"
+
 react-codemirror@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-codemirror/-/react-codemirror-1.0.0.tgz#91467b53b1f5d80d916a2fd0b4c7adb85a9001ba"
@@ -5624,6 +5648,10 @@ react-dev-utils@^0.5.2:
     recursive-readdir "2.1.1"
     sockjs-client "1.0.1"
     strip-ansi "3.0.1"
+
+react-displace@^2.1.4:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/react-displace/-/react-displace-2.2.1.tgz#faa21bbcc251cf94825bf6515323dcdcfe9e1796"
 
 react-docgen-displayname-handler@^1.0.0:
   version "1.0.0"
@@ -6729,6 +6757,10 @@ synesthesia@^1.0.1:
   resolved "https://registry.yarnpkg.com/synesthesia/-/synesthesia-1.0.1.tgz#5ef95ea548c0d5c6e6f9bb4b0d0731dff864a777"
   dependencies:
     css-color-names "0.0.3"
+
+tabbable@^1.0.3:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-1.0.6.tgz#7c26a87ea6f4a25edf5edb619745a0ae740724fc"
 
 table@^4.0.1:
   version "4.0.1"

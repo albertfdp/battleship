@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as BoardActions from 'actions/BoardActions';
 
+import EndGameModal from '../EndGameModal';
 import Board from '../Board';
 import Results from '../Results';
 import styles from './styles.css';
@@ -16,10 +17,14 @@ class App extends Component {
   };
 
   componentWillMount() {
+    this.onRestart();
+  }
+
+  onRestart = () => {
     const { boardActions } = this.props;
 
     boardActions.init();
-  }
+  };
 
   render() {
     return (
@@ -32,6 +37,7 @@ class App extends Component {
           <Board player={1} size="small" />
           <Results />
         </div>
+        <EndGameModal onRestart={this.onRestart} />
       </div>
     );
   }

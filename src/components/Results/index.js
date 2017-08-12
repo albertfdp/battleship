@@ -23,7 +23,7 @@ const Results = ({ results }) =>
             const [size, score] = playerResults;
 
             return (
-              <Boat key={id} size={size} score={score} player={playerId} />
+              <Boat key={id} size={size} score={score} player={!!playerId} />
             );
           })}
       </div>

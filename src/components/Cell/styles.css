@@ -82,7 +82,7 @@
   align-items: center;
 }
 
-.debug {
+.boat.debug {
   background-color: color(var(--color-blue) shade(10%));
 }
 

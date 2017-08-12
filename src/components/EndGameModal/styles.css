@@ -1,0 +1,43 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 30px;
+
+  width: 600px;
+  max-width: 100%;
+  min-height: 400px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+}
+
+.content > p {
+  margin: 10px;
+}
+
+.medal {
+  font-size: 3em;
+}
+
+.button {
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: #8930e8;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.button:focus {
+  outline-color: rgb(108, 22, 199, .5);
+  outline-style: auto;
+  outline-width: 5px;
+  outline-offset: 3px;
+}

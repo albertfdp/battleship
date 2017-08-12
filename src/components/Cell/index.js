@@ -19,7 +19,8 @@ const Cell = ({ disabled, type, hit, size, onHit }) =>
       [styles.disabled]: disabled,
       [styles.hit]: hit,
       [styles[type.toLowerCase()]]: type,
-      [styles[size]]: size
+      [styles[size]]: size,
+      [styles.debug]: __DEV__ && window.location.search.includes('debug=true')
     })}
     tabIndex={disabled ? -1 : 0}
     onKeyDown={e => {

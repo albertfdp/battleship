@@ -48,6 +48,7 @@
     "prop-types": "^15.5.10",
     "react": "16.0.0-beta.5",
     "react-addons-test-utils": "16.0.0-alpha.3",
+    "react-aria-modal": "^2.7.0",
     "react-dom": "16.0.0-beta.5",
     "react-redux": "^5.0.6",
     "react-styleguidist": "^5.2.1",

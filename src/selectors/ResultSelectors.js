@@ -15,3 +15,7 @@ export const getResults = createSelector(
       )
     )
 );
+
+export const isGameOver = createSelector(boardSelector, boards =>
+  boards.some(board => board.isGameOver())
+);
