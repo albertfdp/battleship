@@ -73,7 +73,7 @@ module.exports = {
     }),
     new OfflinePlugin({
       caches: {
-        main: ['main.*.js', 'main.*.css', 'vendor.*.js', 'index.html'],
+        main: ['main.*.js', 'main.*.css', 'vendor.*.js'],
         optional: [':rest:']
       },
       AppCache: false
