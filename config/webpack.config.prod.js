@@ -54,6 +54,11 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: module =>
+        module.context && module.context.includes('node_modules')
+    }),
     new HtmlWebpackPlugin({
       title: 'React Battleship',
       template: paths.template
@@ -69,7 +74,7 @@ module.exports = {
     new OfflinePlugin({
       safeToUseOptionalCaches: true,
       caches: {
-        main: ['main.*.js', 'main.*.css', 'index.html'],
+        main: ['main.*.js', 'main.*.css', 'vendor.*.js', 'index.html'],
         optional: [':rest:']
       },
       ServiceWorker: { events: true },
