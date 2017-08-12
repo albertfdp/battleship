@@ -29,6 +29,16 @@
           "useBuiltIns": true
         }],
         "react"
+      ],
+      "plugins": [
+        [ "module-resolver", {
+          "root": [ "./src" ],
+          "alias": {
+            "test": "./test"
+          }
+        }],
+        "transform-class-properties",
+        "transform-export-extensions"
       ]
     },
     "test": {

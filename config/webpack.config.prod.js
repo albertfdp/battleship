@@ -1,15 +1,16 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const paths = require('./paths');
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
 
   entry: [paths.app],
 
   output: {
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
     path: paths.output,
     publicPath: paths.public
   },
@@ -28,11 +29,14 @@ module.exports = {
       },
       {
         test: /\.css/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&localIdentName=[path][name]--[local]--[hash:base64:5]',
-          'postcss-loader'
-        ],
+        loaders: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?modules&localIdentName=[path][name]--[local]--[hash:base64:5]',
+            'postcss-loader'
+          ]
+        }),
+
         include: paths.source
       },
       {
@@ -42,20 +46,24 @@ module.exports = {
     ]
   },
 
-  devServer: {
-    historyApiFallback: true
-  },
-
   plugins: [
     new webpack.DefinePlugin({
-      __DEV__: true,
-      __PRODUCTION__: false
+      __DEV__: false,
+      __PRODUCTION__: true,
+      'process.env.NODE_ENV': JSON.stringify('production')
     }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       title: 'React Battleship',
       template: paths.template
     }),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new ExtractTextPlugin({
+      filename: '[name].[chunkhash].css',
+      allChunks: true
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: { screw_ie8: true, warnings: false },
+      mangle: { screw_ie8: true }
+    })
   ]
 };
