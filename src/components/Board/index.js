@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
+import createFocusGroup from 'focus-group';
+import keycodes from 'keycodes';
+
 import { List } from 'immutable';
 import { cellRowsSelector } from 'selectors/CellSelectors';
 
@@ -20,29 +24,83 @@ class Board extends Component {
     size: PropTypes.string
   };
 
-  componentWillReceiveProps(nextProps) {
-    const { disabled: wasDisabled } = this.props;
-    const { disabled } = nextProps;
+  constructor(props) {
+    super(props);
 
-    if (wasDisabled && !disabled) {
-      document.activeElement.blur();
-      setTimeout(() => this.focusNodeAtIndex(1), 0);
+    this.focusGroup = createFocusGroup({
+      keybindings: {
+        next: [{ keyCode: keycodes('right') }, { keyCode: keycodes('d') }],
+        prev: [{ keyCode: keycodes('left') }, { keyCode: keycodes('a') }]
+      },
+      stringSearch: false
+    });
+    this.lastIndex = 0;
+  }
+
+  onActivate() {
+    this.focusGroup.activate();
+    this.focusGroup.focusNodeAtIndex(this.lastIndex);
+  }
+
+  onDeactivate() {
+    this.focusGroup.deactivate();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { disabled } = this.props;
+    const { disabled: willBeDisabled } = nextProps;
+
+    if (!disabled && willBeDisabled) {
+      this.lastIndex = this.focusGroup._getActiveElementIndex();
+      this.onDeactivate();
     }
   }
 
-  focusNodeAtIndex(index) {
-    this.node.children[index].focus();
+  componentDidMount() {
+    const { disabled } = this.props;
+
+    let cellNodes = [];
+
+    Array.from(this.node.children).forEach(row => {
+      cellNodes = cellNodes.concat(Array.from(row.children));
+    });
+
+    this.focusGroup.setMembers(cellNodes);
+
+    if (!disabled) {
+      this.onActivate();
+    }
   }
 
-  onArrowDown() {
-    const currentCell = document.activeElement;
-    console.log(currentCell);
+  componentWillUnmount() {
+    this.focusGroup.clearMembers().deactivate();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { disabled } = this.props;
+    const { disabled: wasDisabled } = prevProps;
+
+    if (!disabled && wasDisabled) {
+      this.onActivate();
+    }
   }
 
   onKeyDown = e => {
     switch (e.keyCode) {
-      case 40:
-        return this.onArrowDown();
+      case keycodes('s'):
+      case keycodes('down'): {
+        const current = this.focusGroup._getActiveElementIndex();
+        this.focusGroup.focusNodeAtIndex((current + 10) % 100);
+        break;
+      }
+      case keycodes('w'):
+      case keycodes('up'): {
+        const current = this.focusGroup._getActiveElementIndex();
+        const nextIndex = (current - 10 + 100 * 10) % 100;
+
+        this.focusGroup.focusNodeAtIndex(nextIndex);
+        break;
+      }
     }
   };
 
@@ -55,11 +113,6 @@ class Board extends Component {
 
     return (
       <div
-        ref={node => {
-          if (node) {
-            this.node = node;
-          }
-        }}
         className={styles.board}
         disabled={disabled}
         onKeyDown={this.onKeyDown}
@@ -69,20 +122,29 @@ class Board extends Component {
               {player}
             </div>
           : null}
-        {cells.map((row, rowIdx) =>
-          <div className={styles.row} key={rowIdx}>
-            {row.map((cell, cellId) =>
-              <Cell
-                type={cell.type}
-                hit={cell.hit}
-                key={cellId}
-                disabled={disabled}
-                onHit={() => !disabled && boardActions.onHit(player, cell)}
-                size={size}
-              />
-            )}
-          </div>
-        )}
+        <div
+          className={styles.cells}
+          ref={node => {
+            if (node) {
+              this.node = node;
+            }
+          }}
+        >
+          {cells.map((row, rowIdx) =>
+            <div className={styles.row} key={rowIdx}>
+              {row.map((cell, cellId) =>
+                <Cell
+                  type={cell.type}
+                  hit={cell.hit}
+                  key={cellId}
+                  disabled={disabled}
+                  onHit={() => !disabled && boardActions.onHit(player, cell)}
+                  size={size}
+                />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     );
   }
