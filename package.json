@@ -40,6 +40,7 @@
     "immutable": "^4.0.0-rc.2",
     "jest": "^20.0.1",
     "keycodes": "^0.2.5",
+    "offline-plugin": "^4.8.3",
     "postcss-cssnext": "^3.0.2",
     "postcss-import": "^10.0.0",
     "postcss-loader": "^2.0.5",
@@ -69,7 +70,10 @@
       "\\.css$": "<rootDir>/test/stubs/styles.js",
       "test/expect": "<rootDir>/test/expect.js"
     },
-    "coveragePathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/test/"]
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/test/"
+    ]
   },
   "dependencies": {
     "ramda": "^0.24.1"

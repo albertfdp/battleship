@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OfflinePlugin = require('offline-plugin');
 
 const paths = require('./paths');
 
@@ -64,6 +65,15 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compressor: { screw_ie8: true, warnings: false },
       mangle: { screw_ie8: true }
+    }),
+    new OfflinePlugin({
+      safeToUseOptionalCaches: true,
+      caches: {
+        main: ['main.*.js', 'main.*.css', 'index.html'],
+        optional: [':rest:']
+      },
+      ServiceWorker: { events: true },
+      AppCache: { events: true }
     })
   ]
 };

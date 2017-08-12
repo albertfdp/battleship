@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import OfflinePlugin from 'offline-plugin/runtime';
 
 import configureStore from './stores';
 import App from './components/App';
@@ -21,5 +22,14 @@ renderApp(store);
 if (module.hot) {
   module.hot.accept('./components/App', () => {
     renderApp(store);
+  });
+}
+
+if (__PRODUCTION__) {
+  OfflinePlugin.install({
+    onUpdateReady: () => OfflinePlugin.applyUpdate(),
+    onUpdated: () => {
+      window.location.reload();
+    }
   });
 }
