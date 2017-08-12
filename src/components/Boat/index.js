@@ -14,13 +14,16 @@ const times = n => {
   return array;
 };
 
-const Boat = ({ size, score }) => {
+const Boat = ({ player, size, score }) => {
   return (
     <div className={styles.boat}>
       {times(size).map(i =>
         <div
           key={i}
-          className={classnames(styles.block, { [styles.hit]: score > i })}
+          className={classnames(styles.block, {
+            [styles.hit]: score > i,
+            [styles.enemy]: player
+          })}
         />
       )}
     </div>
@@ -28,6 +31,7 @@ const Boat = ({ size, score }) => {
 };
 
 Boat.propTypes = {
+  player: PropTypes.bool,
   score: PropTypes.number.isRequired,
   size: PropTypes.number.isRequired
 };

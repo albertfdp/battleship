@@ -22,7 +22,9 @@ const Results = ({ results }) =>
           .map((playerResults, id) => {
             const [size, score] = playerResults;
 
-            return <Boat key={id} size={size} score={score} />;
+            return (
+              <Boat key={id} size={size} score={score} player={playerId} />
+            );
           })}
       </div>
     )}

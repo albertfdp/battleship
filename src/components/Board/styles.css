@@ -6,6 +6,16 @@
   margin: 10px;
 }
 
+.board[disabled] {
+  display: none;
+}
+
+@media screen and (min-width: 991px) {
+  .board[disabled] {
+    display: flex;
+  }
+}
+
 .number {
   display: flex;
   flex: 1;

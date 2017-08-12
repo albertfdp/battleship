@@ -1,6 +1,8 @@
 :root {
   --boat-radius: 3px;
-  --boat-border-color: rgb(12, 38, 55);
+  --hit-background-color: rgb(22, 199, 46);
+  --boat-background-color: rgb(12, 38, 55);
+  --enemy-background-color: rgb(233, 143, 127);
 }
 
 .boat {
@@ -10,8 +12,8 @@
 }
 
 .block.hit {
-  border-color: rgb(72, 78, 103);
-  background-color: color(rgb(72, 78, 103) tint(40%));
+  border-color: var(--hit-background-color);
+  background-color: color(var(--hit-background-color) tint(40%));
 }
 
 .block {
@@ -19,8 +21,13 @@
   width: 40px;
   border-width: 1px;
   border-style: solid;
-  border-color: rgb(12, 38, 55);
-  background-color: color(var(--boat-border-color) tint(80%));
+  border-color: var(--boat-background-color);
+  background-color: color(var(--boat-background-color) tint(80%));
+}
+
+.block.enemy.hit {
+  border-color: var(--enemy-background-color);
+  background-color: color(var(--enemy-background-color) tint(40%));
 }
 
 [dir="ltr"] .block {
