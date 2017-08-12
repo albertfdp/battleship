@@ -20,6 +20,32 @@ class Board extends Component {
     size: PropTypes.string
   };
 
+  componentWillReceiveProps(nextProps) {
+    const { disabled: wasDisabled } = this.props;
+    const { disabled } = nextProps;
+
+    if (wasDisabled && !disabled) {
+      document.activeElement.blur();
+      setTimeout(() => this.focusNodeAtIndex(1), 0);
+    }
+  }
+
+  focusNodeAtIndex(index) {
+    this.node.children[index].focus();
+  }
+
+  onArrowDown() {
+    const currentCell = document.activeElement;
+    console.log(currentCell);
+  }
+
+  onKeyDown = e => {
+    switch (e.keyCode) {
+      case 40:
+        return this.onArrowDown();
+    }
+  };
+
   render() {
     const { cells, disabled, boardActions, player, size } = this.props;
 
@@ -28,7 +54,16 @@ class Board extends Component {
     }
 
     return (
-      <div className={styles.board} disabled={disabled}>
+      <div
+        ref={node => {
+          if (node) {
+            this.node = node;
+          }
+        }}
+        className={styles.board}
+        disabled={disabled}
+        onKeyDown={this.onKeyDown}
+      >
         {disabled
           ? <div className={styles.number}>
               {player}

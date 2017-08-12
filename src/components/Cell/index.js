@@ -21,6 +21,10 @@ const Cell = ({ disabled, type, hit, size, onHit }) =>
       [styles[type.toLowerCase()]]: type,
       [styles[size]]: size
     })}
+    tabIndex={disabled ? -1 : 0}
+    onKeyDown={e => {
+      return e.keyCode === 13 && onHit();
+    }}
     onClick={onHit}
   >
     {hit

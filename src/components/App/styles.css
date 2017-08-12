@@ -9,15 +9,24 @@ body > div {
 .app {
   display: flex;
   justify-content: space-around;
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
   align-items: flex-start;
-  flex: 1;
   height: 100%;
+}
+
+.board {
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media screen and (max-width: 900px) {
   .app {
     flex-direction: column;
+    align-items: center;
     padding-top: 0;
   }
 

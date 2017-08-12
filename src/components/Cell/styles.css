@@ -38,6 +38,13 @@
   cursor: pointer;
 }
 
+.cell:focus {
+  z-index: 2;
+  outline-color: color(var(--color-blue) shade(50%));
+  outline-offset: 1px;
+  outline-width: 3px;
+}
+
 .content {
   display: flex;
   flex-direction: column;

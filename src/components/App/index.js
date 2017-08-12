@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -23,10 +24,10 @@ class App extends Component {
   render() {
     return (
       <div className={styles.app}>
-        <div className={styles.current}>
+        <div className={classnames(styles.board, styles.current)}>
           <Board player={0} />
         </div>
-        <div className={styles.other}>
+        <div className={classnames(styles.board, styles.other)}>
           <Board player={1} size="small" />
           <Results />
         </div>
