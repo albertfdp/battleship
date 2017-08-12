@@ -5578,7 +5578,7 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-addons-test-utils@16.0.0-beta.5:
+react-addons-test-utils@16.0.0-alpha.3:
   version "16.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-16.0.0-alpha.3.tgz#c17796f9b2c527b6be56f8d783b38020513fdb42"
   dependencies:
