@@ -6,15 +6,15 @@
   "scripts": {
     "start": "webpack-dev-server",
     "styleguide": "styleguidist --config config/styleguide.config.js server",
-    "build": "NODE_ENV=production webpack --progress",
-    "format": "npm run format:js",
-    "lint": "npm run lint:js && npm run lint:css",
+    "build": "webpack --progress",
+    "format": "yarn format:js",
+    "lint": "yarn lint:js && yarn lint:css",
     "lint:css": "stylelint src/**/*.css",
     "lint:js": "eslint {config,src,test}/**/*.js",
     "format:js": "prettier --single-quote --write {config,src,test}/**/*.js",
     "test": "jest",
     "test:watch": "jest --watch",
-    "ci": "npm run format && npm run lint && yarn run test"
+    "ci": "yarn format && npm run lint && yarn run test"
   },
   "author": "",
   "license": "ISC",
@@ -69,10 +69,7 @@
       "\\.css$": "<rootDir>/test/stubs/styles.js",
       "test/expect": "<rootDir>/test/expect.js"
     },
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/test/"
-    ]
+    "coveragePathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/test/"]
   },
   "dependencies": {
     "ramda": "^0.24.1"
