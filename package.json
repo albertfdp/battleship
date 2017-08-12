@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "styleguide": "styleguidist --config config/styleguide.config.js server",
-    "build": "webpack --progress",
+    "build": "./node_modules/.bin/webpack --progress",
     "format": "yarn format:js",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:css": "stylelint src/**/*.css",
@@ -69,10 +69,7 @@
       "\\.css$": "<rootDir>/test/stubs/styles.js",
       "test/expect": "<rootDir>/test/expect.js"
     },
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules/",
-      "<rootDir>/test/"
-    ]
+    "coveragePathIgnorePatterns": ["<rootDir>/node_modules/", "<rootDir>/test/"]
   },
   "dependencies": {
     "ramda": "^0.24.1"
