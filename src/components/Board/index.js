@@ -40,6 +40,7 @@ class Board extends Component {
 
   onActivate() {
     this.focusGroup.activate();
+
     this.focusGroup.focusNodeAtIndex(this.lastIndex);
   }
 
@@ -92,6 +93,7 @@ class Board extends Component {
       case keycodes('down'): {
         const current = this.focusGroup._getActiveElementIndex();
         this.focusGroup.focusNodeAtIndex((current + 10) % 100);
+
         break;
       }
       case keycodes('w'):
