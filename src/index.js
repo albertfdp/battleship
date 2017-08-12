@@ -25,11 +25,4 @@ if (module.hot) {
   });
 }
 
-if (__PRODUCTION__) {
-  OfflinePlugin.install({
-    onUpdateReady: () => OfflinePlugin.applyUpdate(),
-    onUpdated: () => {
-      window.location.reload();
-    }
-  });
-}
+if (__PRODUCTION__) OfflinePlugin.install();

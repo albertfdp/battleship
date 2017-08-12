@@ -72,13 +72,11 @@ module.exports = {
       mangle: { screw_ie8: true }
     }),
     new OfflinePlugin({
-      safeToUseOptionalCaches: true,
       caches: {
         main: ['main.*.js', 'main.*.css', 'vendor.*.js', 'index.html'],
         optional: [':rest:']
       },
-      ServiceWorker: { events: true },
-      AppCache: { events: true }
+      AppCache: false
     })
   ]
 };
