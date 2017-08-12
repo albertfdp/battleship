@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "styleguide": "styleguidist --config config/styleguide.config.js server",
-    "build": "./node_modules/.bin/webpack --progress",
+    "build": "webpack",
     "format": "yarn format:js",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:css": "stylelint src/**/*.css",
